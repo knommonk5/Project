@@ -10,8 +10,8 @@ public abstract class KeyCardSystem {
 	private boolean sperret;
 	
 	public void Kort(String fName, String sName, int PIN){
-		this.fNavn = forNavn;
-		this.sNavn = etterNavn;
+		this.fNavn = fNavn;
+		this.sNavn = sNavn;
 		this.PIN = PIN;
 		kortNummer = ++cards;
 		
@@ -26,7 +26,7 @@ public abstract class KeyCardSystem {
 	}
 	
 	public String getNavn() {
-		return forNavn + " " + etterNavn;
+		return fNavn + " " + sNavn;
 	}
 
 	public boolean erSperret() {
