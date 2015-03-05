@@ -1,3 +1,4 @@
+
 public abstract class Kort {
 
 	private static int kort;
@@ -45,7 +46,7 @@ public abstract class Kort {
 		return etterNavn;
 	}
 
-	public void setEtterName(String etterNavn) {
+	public void setEtterNavn(String etterNavn) {
 		this.etterNavn = etterNavn;
 	}
 
