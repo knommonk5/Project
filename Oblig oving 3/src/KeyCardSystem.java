@@ -1,32 +1,25 @@
 
-public abstract class KeyCardSystem {
-	
-	private static int cards;
-	private String fNavn;
-	private String sNavn;
-	
+public abstract class KeyCardSystem implements Comparable<KeyCardSystem>, Cloneable{
+
+	private static int kort;
+
+	private String forNavn, etterNavn;
+
 	private int PIN, kortNummer;
-	
+
 	private boolean sperret;
-	
-	public void Kort(String fName, String sName, int PIN){
-		this.fNavn = fNavn;
-		this.sNavn = sNavn;
+
+	public KeyCardSystem(String firstName, String lastName, int PIN) {
+		this.forNavn = firstName;
+		this.etterNavn = lastName;
 		this.PIN = PIN;
-		kortNummer = ++cards;
-		
+		kortNummer = ++kort;
 	}
-	
+
 	public abstract boolean sjekkPIN(int pin);
-	
-	
-	
-	public boolean isSperret(){
-		return sperret;
-	}
-	
+
 	public String getNavn() {
-		return fNavn + " " + sNavn;
+		return forNavn + " " + etterNavn;
 	}
 
 	public boolean erSperret() {
@@ -38,23 +31,23 @@ public abstract class KeyCardSystem {
 	}
 
 	public static int getKort() {
-		return cards;
+		return kort;
 	}
 
 	public String getForNavn() {
-		return fNavn;
+		return forNavn;
 	}
 
 	public void setForNavn(String forNavn) {
-		this.fNavn = forNavn;
+		this.forNavn = forNavn;
 	}
 
 	public String getEtterNavn() {
-		return sNavn;
+		return etterNavn;
 	}
 
-	public void setEtterName(String etterNavn) {
-		this.sNavn = etterNavn;
+	public void setEtterNavn(String etterNavn) {
+		this.etterNavn = etterNavn;
 	}
 
 	public int getPIN() {
@@ -64,9 +57,9 @@ public abstract class KeyCardSystem {
 	public int getKortNummer() {
 		return kortNummer;
 	}
-	
+
 	public static void setKort(int kortNummer) {
-		cards = kortNummer;
+		kort = kortNummer;
 	}
 
 	public boolean getSperret() {
@@ -77,5 +70,40 @@ public abstract class KeyCardSystem {
 		return String.format(
 				"Navn:\t\t%s\nPIN:\t\t%d\nKort nummer:\t%d\nEr sperret:\t%b\n",
 				getNavn(), PIN, kortNummer, sperret);
+	}
+	
+	public int compareTo(KeyCardSystem c) {
+		if (c == null)
+			return -1;
+
+		if (this.getEtterNavn().compareTo(c.getEtterNavn()) < 0) {
+			return -1;
+
+		} else if (this.getEtterNavn().compareTo(c.getEtterNavn()) > 0) {
+			return 1;
+
+		} else if (this.getForNavn().compareTo(c.getForNavn()) < 0) {
+			return -1;
+
+		} else if (this.getForNavn().compareTo(c.getForNavn()) > 0) {
+			return 1;
+
+		} else
+			return 0;
+	}
+
+	public Object clone() {
+		try {
+
+			KeyCardSystem klone = (KeyCardSystem) super.clone();
+			klone.setForNavn(new String(this.getForNavn()));
+			klone.setEtterNavn(new String(this.getEtterNavn()));
+			return klone;
+
+		} catch (CloneNotSupportedException e) {
+
+			return null;
+
+		}
 	}
 }
