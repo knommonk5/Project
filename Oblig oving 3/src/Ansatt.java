@@ -75,7 +75,6 @@ public class Ansatt extends Kort implements Fast{
 
 		return FAKTOR * årAnsatt;
 	}
-<<<<<<< HEAD
 	
 	public Object clone() {
 		Ansatt klone = (Ansatt) super.clone();
@@ -83,6 +82,4 @@ public class Ansatt extends Kort implements Fast{
 
 		return klone;
 	}
-=======
->>>>>>> refs/heads/master
 }
